@@ -1665,8 +1665,10 @@ class DoublyRobustWithShrinkage(DoublyRobust):
             Estimated rewards for each observation.
 
         """
+        epsilon = 1e-6  # to avoid division by zero
+
         n = action.shape[0]
-        iw = action_dist[np.arange(n), action, position] / pscore
+        iw = action_dist[np.arange(n), action, position] / pscore + epsilon
         if self.lambda_ < np.inf:
             iw_hat = (self.lambda_ * iw) / (iw**2 + self.lambda_)
         else:
@@ -1680,6 +1682,7 @@ class DoublyRobustWithShrinkage(DoublyRobust):
             weights=pi_e_at_position,
             axis=1,
         )
+
         estimated_rewards += iw_hat * (reward - q_hat_factual)
 
         return estimated_rewards
