@@ -19,7 +19,7 @@ seaborn = "^0.13.2"
 pyieoe = "^0.1.1"
 pingouin = "^0.4.0"
 mypy-extensions = "^0.4.3"
-Pillow = "9.1.1"
+Pillow = "10.4.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
